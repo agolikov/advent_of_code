@@ -10,7 +10,7 @@ fn main() {
 }
 
 
-fn get_char(x:i32, y:i32, map:&Vec<&str>) -> char{
+fn get_char(x:i32, y:i32, map:&Vec<&str>) -> char {
     map.get(x as usize).unwrap().chars().nth(y as usize).unwrap()
 }
 unsafe fn search(x:i32, y:i32, n:i32, m:i32, depth:i32, map:&Vec<&str>, mut v: &mut [[i32; 500]; 500]) {
@@ -58,6 +58,7 @@ fn sol(input: &str) -> String {
     let n: i32 = lines.first().unwrap().len() as i32;
     let mut visited : [[i32; 500]; 500] = [[-1; 500]; 500];
     for (i, s) in lines.iter().enumerate() {
+
         for (j, c) in s.chars().enumerate() {
             if c == 'S' {
                 sX = i as i32;
@@ -69,10 +70,59 @@ fn sol(input: &str) -> String {
         search(sX, sY, n,m, 0, &lines, &mut visited);
     }
 
-    for i in 0..n {
-        let mut open= false;
-        for j in 0..m {
+    total = 0;
+    for i in 0..m {
+        let mut inside = false;
+        let mut stack = Vec::new();
+        for j in 0..n {
             let x = get_char(i, j, &lines);
+            if (visited[i as usize][j as usize]>-1) {
+                match x {
+                    'S'=> {
+                        stack.push('F');
+                        inside = true;
+                    },
+                    'F'=> {
+                        stack.push('F');
+                        inside = true;
+                    },
+                    'L' => {
+                        stack.push('L');
+                        inside = true;
+                    },
+                    'J' => {
+                        stack.pop();
+                        if (stack.len()==0){
+                            inside = false;
+                        }
+                    },
+                    '7' => {
+                        stack.pop();
+                        if (stack.len()==0){
+                            inside = false;
+                        }
+                    },
+                    '|' => {
+                        if (stack.contains(&'|')){
+                            stack.pop();
+                            if (stack.len()==0){
+                                inside = false;
+                            }
+                        }else{
+                            stack.push('|');
+                            inside = true;
+                        }
+                    }
+                    _=>{
+                    }
+                }
+
+            } else {
+                if (inside) {
+                    println!("{} {}", i,j);
+                    total+=1;
+                }
+            }
         }
     }
     String::from(total.to_string())
