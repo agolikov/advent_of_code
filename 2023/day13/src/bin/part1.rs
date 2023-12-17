@@ -2,7 +2,7 @@ use std::hash::Hash;
 use std::os::macos::raw::stat;
 
 fn main() {
-    let input = include_str!("input1.txt");
+    let input = include_str!("input2.txt");
     let output = sol(input);
     println!("{}", output);
 }
@@ -19,6 +19,9 @@ fn calculate_count(p0: &str, nums: &Vec<usize>, pos:usize, chars: &mut Vec<char>
             {
                 if (!state && curLeng > 0) {
                     seq.push(curLeng);
+                    if (seq.len() > nums.len()) {
+                        return 0;
+                    }
                     curLeng = 0;
                 }
                 state = true;
@@ -35,7 +38,6 @@ fn calculate_count(p0: &str, nums: &Vec<usize>, pos:usize, chars: &mut Vec<char>
                     return 0;
                 }
             }
-           println!("{:?}", chars);
             return 1;
         }
 
