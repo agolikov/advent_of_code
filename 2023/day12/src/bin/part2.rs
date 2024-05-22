@@ -7,19 +7,23 @@ fn main() {
     println!("{}", output);
 }
 
-fn calculate_count(line: &str, nums: &Vec<usize>, pos:usize, id: usize, chars:&mut Vec<char>) -> i32
-{
+fn calculate_count(
+    line: &str,
+    nums: &Vec<usize>,
+    pos: usize,
+    id: usize,
+    chars: &mut Vec<char>,
+) -> i32 {
     let mut total = 0;
     if (id == nums.len()) {
-        if (chars.len() <= line.len()+1) {
+        if (chars.len() <= line.len() + 1) {
             let x = &line[chars.len()..];
-            if (x.contains('#')){
+            if (x.contains('#')) {
                 return 0;
             }
             // println!("{:?}", chars);
             return 1;
         }
-
     } else {
         if (pos < line.len()) {
             if (line.as_bytes()[pos] as char == '.' || line.as_bytes()[pos] as char == '?') {
@@ -58,16 +62,19 @@ fn calculate_count(line: &str, nums: &Vec<usize>, pos:usize, id: usize, chars:&m
 
 fn sol(input: &str) -> String {
     let lines: Vec<_> = input.split('\n').collect();
-    let mut total:i32 = 0;
+    let mut total: i32 = 0;
     for (i, s) in lines.iter().enumerate() {
-        let mut parts:Vec<&str> = s.split(' ').collect();
+        let mut parts: Vec<&str> = s.split(' ').collect();
         let line = parts[0].to_owned().repeat(5) + ".";
         let numbers = (parts[1].to_owned() + ",").repeat(5);
 
-        let nums: Vec<usize> = numbers[..numbers.len()-1].split( ',').map(|s| s.parse().expect("Failed to parse number")).collect();
+        let nums: Vec<usize> = numbers[..numbers.len() - 1]
+            .split(',')
+            .map(|s| s.parse().expect("Failed to parse number"))
+            .collect();
         let add = calculate_count(&line, &nums, 0, 0, &mut Vec::new());
-        println!("{} {}", i+1, add);
-        total+=add;
+        println!("{} {}", i + 1, add);
+        total += add;
     }
 
     String::from(total.to_string())
