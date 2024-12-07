@@ -1,24 +1,24 @@
 import java.io.File
 
+fun main() {
 
-fun check_order( pairs: MutableList<Pair<Int,Int>>, nums : List<Int>) : Int
-{
-    var errors : Int = 0
-    val mutableSet : MutableSet<Int> = mutableSetOf()
-    for (j in nums.indices) {
-        for (p in pairs.indices){
-            if (pairs[p].first == nums[j]){
-                if (mutableSet.contains(pairs[p].second)) {
-                    errors += 1
+    fun check_order( pairs: MutableList<Pair<Int,Int>>, nums : List<Int>) : Int
+    {
+        var errors : Int = 0
+        val mutableSet : MutableSet<Int> = mutableSetOf()
+        for (j in nums.indices) {
+            for (p in pairs.indices){
+                if (pairs[p].first == nums[j]){
+                    if (mutableSet.contains(pairs[p].second)) {
+                        errors += 1
+                    }
                 }
             }
+            mutableSet.add(nums[j]);
         }
-        mutableSet.add(nums[j]);
+        return errors
     }
-    return errors
-}
 
-fun main() {
     fun part1(lines: List<String>): Int {
         var ind = 0
         var pairs : MutableList<Pair<Int,Int>> = mutableListOf()

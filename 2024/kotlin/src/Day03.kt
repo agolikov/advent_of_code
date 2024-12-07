@@ -1,12 +1,13 @@
 import java.io.File
 
-data class Operation(
-    val type: String, // "do", "dont", or "mul"
-    val value: Int? = null, // Value for mul, null for others
-    val position: Int
-)
-
 fun main() {
+
+    data class Operation(
+        val type: String, // "do", "dont", or "mul"
+        val value: Int? = null, // Value for mul, null for others
+        val position: Int
+    )
+
     fun part1(content: String): Int {
         val regex = Regex("mul\\(\\d+,\\d+\\)")
 

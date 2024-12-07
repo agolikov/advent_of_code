@@ -330,7 +330,8 @@ __pycache__/
 
 .gradle
 .idea
-.kotlin/
-build
+2024/kotlin/.gradle
+2024/kotlin/.kotlin
+2024/kotlin/build
 src/**/*.txt
 local.properties

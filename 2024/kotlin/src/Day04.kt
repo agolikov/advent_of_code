@@ -1,39 +1,39 @@
 import java.io.File
 
-val word : String = "XMAS"
-var count : Int = 0
+fun main() {
+    val word : String = "XMAS"
+    var count : Int = 0
 
-val dx = arrayOf(1, 0,-1, 0, 1, -1, 1, -1)
-val dy = arrayOf(0,-1, 0, 1, 1, -1, -1, 1)
+    val dx = arrayOf(1, 0,-1, 0, 1, -1, 1, -1)
+    val dy = arrayOf(0,-1, 0, 1, 1, -1, -1, 1)
 
-fun searchWord(type: Int, ind: Int, posX : Int, posY : Int, v : Array<BooleanArray>, chars : List<String>, visited : Array<BooleanArray>)
-{
-    if (chars[posX][posY] == word[ind])
+    fun searchWord(type: Int, ind: Int, posX : Int, posY : Int, v : Array<BooleanArray>, chars : List<String>, visited : Array<BooleanArray>)
     {
-        if (ind+1 == word.length) {
-            count += 1
-            for (i in v.indices){
-                for (j in v[0].indices)
-                {
-                    visited[i][j] = visited[i][j] or v[i][j]
+        if (chars[posX][posY] == word[ind])
+        {
+            if (ind+1 == word.length) {
+                count += 1
+                for (i in v.indices){
+                    for (j in v[0].indices)
+                    {
+                        visited[i][j] = visited[i][j] or v[i][j]
+                    }
                 }
             }
-        }
-        else {
-            val nx = dx[type] + posX
-            val ny = dy[type] + posY
-            if (nx>=0&&nx < chars.count() && ny >=0 && ny < chars[0].length && !v[nx][ny])
-            {
-                v[nx][ny] = true
-                searchWord(type,ind+1, nx, ny, v, chars, visited)
-                v[nx][ny] = false
-            }
+            else {
+                val nx = dx[type] + posX
+                val ny = dy[type] + posY
+                if (nx>=0&&nx < chars.count() && ny >=0 && ny < chars[0].length && !v[nx][ny])
+                {
+                    v[nx][ny] = true
+                    searchWord(type,ind+1, nx, ny, v, chars, visited)
+                    v[nx][ny] = false
+                }
 
+            }
         }
     }
-}
 
-fun main() {
     fun part1(lines: List<String>): Int {
         count = 0
         val rows = lines.count()
