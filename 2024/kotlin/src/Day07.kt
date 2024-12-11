@@ -1,6 +1,5 @@
-import java.io.File
-
 fun main() {
+    val day = 7
 
     fun search(index:Int, nums :List<Long>, cur:Long, target:Long) : Boolean {
         if (index == nums.size-1)
@@ -49,11 +48,11 @@ fun main() {
         return sum
     }
 
-    val testInput = readInput("Day07_test")
+    val testInput = readTestInputLines(day)
     check(part1(testInput) == 3749.toLong())
     check(part2(testInput) == 11387.toLong())
 
-    val input = readInput("Day07")
+    val input = readAllInputLines(day)
     part1(input).println()
     part2(input).println()
 }

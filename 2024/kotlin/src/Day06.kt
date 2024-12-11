@@ -1,6 +1,5 @@
-import java.io.File
-
 fun main() {
+    val day = 6
 
     val dx = arrayOf(-1, 0, 1, 0)
     val dy = arrayOf(0,  1, 0, -1)
@@ -102,11 +101,11 @@ fun main() {
         return total
     }
 
-    val testInput = readInput("Day06_test")
+    val testInput = readTestInputLines(6)
     check(part1(testInput) == 41)
     check(part2(testInput) == 6)
 
-    val input = readInput("Day06")
+    val input = readAllInputLines(6)
     part1(input).println()
     part2(input).println()
 }

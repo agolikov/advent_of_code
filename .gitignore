@@ -332,6 +332,6 @@ __pycache__/
 .idea
 2024/kotlin/.gradle
 2024/kotlin/.kotlin
+2024/kotlin/.idea
 2024/kotlin/build
-src/**/*.txt
-local.properties
+2024/kotlin/local.properties

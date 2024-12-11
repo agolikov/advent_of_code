@@ -1,8 +1,7 @@
-import java.io.File
-
 fun main() {
+    val day = 3
 
-    data class Operation(
+    data class Operation (
         val type: String, // "do", "dont", or "mul"
         val value: Int? = null, // Value for mul, null for others
         val position: Int
@@ -56,15 +55,11 @@ fun main() {
         return sum
     }
 
-    // Test if implementation meets criteria from the description, like:
-    //check(part1(listOf("test_input")) == 48)
-
-    // Or read a large test input from the `src/Day03_test.txt` file:
-    val testInput = readAllInput("Day03_test")
+    val testInput = readTestInput(day)
     check(part1(testInput) == 161)
+    check(part2(testInput) == 48)
 
-    // Read the input from the `src/Day03.txt` file.
-    val input = readAllInput("Day03")
+    val input = readAllInput(day)
     part1(input).println()
     part2(input).println()
 }

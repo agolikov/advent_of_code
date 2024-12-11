@@ -1,6 +1,5 @@
-import java.io.File
-
 fun main() {
+    val day = 5
 
     fun check_order( pairs: MutableList<Pair<Int,Int>>, nums : List<Int>) : Int
     {
@@ -90,10 +89,10 @@ fun main() {
     }
 
 
-    val testInput = readInput("Day05_test")
+    val testInput = readTestInputLines(day)
     check(part1(testInput) == 143)
 
-    val input = readInput("Day05")
+    val input = readAllInputLines(day)
     part1(input).println()
     part2(input).println()
 }

@@ -1,6 +1,6 @@
-import java.io.File
-
 fun main() {
+    val day = 4
+
     val word : String = "XMAS"
     var count : Int = 0
 
@@ -86,10 +86,10 @@ fun main() {
         return count
     }
 
-    val testInput = readInput("Day04_test")
+    val testInput = readTestInputLines(day)
     check(part1(testInput) == 18)
 
-    val input = readInput("Day04")
+    val input = readAllInputLines(day)
     part1(input).println()
     part2(input).println()
 }
